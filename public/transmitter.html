@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <title>Transmitter - Escape Room</title>
+</head>
+<body>
+  <div id="output"></div>
+
+  <textarea id="message"></textarea>
+  <button id="send">Send</button>
+
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <script type="module">
+    import { FirebaseConfig } from './firebase-config.js';
+    import { Store } from './store.js';
+
+    new FirebaseConfig();
+    const store = new Store(firebase);
+
+    const messageInput = document.getElementById('message');
+
+    document.getElementById('send')
+      .addEventListener('click', e => store.send(messageInput.value))
+  </script>
+</body>

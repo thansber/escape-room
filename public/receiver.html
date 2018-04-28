@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+  <title>Receiver - Escape Room</title>
+</head>
+<body>
+  <div id="output"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <script type="module">
+    import { FirebaseConfig } from './firebase-config.js';
+    import { Store } from './store.js';
+
+    new FirebaseConfig();
+    const store = new Store(firebase);
+
+    store.messager().on('child_added', data => {
+      debugger;
+    });
+  </script>
+</body>

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "escape-room-communicator",
+    "escape-room": "escape-room-communicator"
+  }
+}
