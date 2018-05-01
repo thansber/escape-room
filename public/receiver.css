@@ -39,6 +39,7 @@ body {
 
 #debug {
   bottom: 1rem;
+  display: none;
   position: absolute;
   right: 1rem;
   z-index: 1;

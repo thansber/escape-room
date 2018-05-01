@@ -19,12 +19,12 @@
     import { Store } from './store.js';
     import { Display } from './display.js';
 
-    // new FirebaseConfig();
-    // const store = new Store(firebase);
+    new FirebaseConfig();
+    const store = new Store(firebase);
     const display = new Display(document.getElementById('output'));
 
-    // store.messager()
-    //   .on('child_added', data => display.showMessage(data.val().message));
+    store.messager()
+       .on('child_added', data => display.showMessage(data.val().message));
 
 
     document.getElementById('message')
