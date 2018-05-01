@@ -1,0 +1,50 @@
+body {
+  background-color: #bdbdbd;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  padding: 1rem;
+}
+
+section {
+  width: 50%;
+}
+
+.right {
+  align-items: flex-start;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  border: 0;
+  color: white;
+  cursor: pointer;
+  font-size: 150%;
+  padding: 1rem 1.5rem;
+}
+
+#message {
+  font-size: 150%;
+  height: 15rem;
+  padding: 0.5rem;
+  width: 25rem;
+}
+
+.bg-red {
+  background-color: #B71C1C;
+}
+
+.bg-blue {
+  background-color: #0D47A1;
+}
+
+.red {
+  color: #B71C1C;
+}
+
+.blue {
+  color: #0D47A1;
+}

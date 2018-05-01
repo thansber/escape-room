@@ -3,6 +3,10 @@ export class Store {
     this.messageRef = firebase.database().ref('messages');
   }
 
+  clearAll() {
+    this.messageRef.remove();
+  }
+
   messager() {
     return this.messageRef;
   }

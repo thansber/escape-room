@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <head>
   <title>Transmitter - Escape Room</title>
+  <link rel="stylesheet" href="transmitter.css" />
 </head>
 <body>
-  <div id="output"></div>
+  <main>
+    <section>
+      <textarea id="message"></textarea>
+      <button id="send" class="bg-blue">Send</button>
+    </section>
+    <section class="right">
+      <button id="clear" class="bg-red">Clear all data</button>
+    </section>
+  </main>
 
-  <textarea id="message"></textarea>
-  <button id="send">Send</button>
 
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
@@ -22,5 +29,7 @@
 
     document.getElementById('send')
       .addEventListener('click', e => store.send(messageInput.value))
+    document.getElementById('clear')
+      .addEventListener('click', e => store.clearAll());
   </script>
 </body>

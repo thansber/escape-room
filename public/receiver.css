@@ -1,0 +1,45 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: Copperplate;
+
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+}
+
+#output {
+  align-items: center;
+  display: flex;
+  font-size: 250%;
+  height: 100%;
+  justify-content: center;
+  transition: opacity 3s;
+  width: 100%;
+}
+
+#output.hiding {
+  opacity: 0;
+}
+
+#output p {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#output p.showing {
+  opacity: 1;
+}
+
+#output .space {
+  width: 1rem;
+}
+
+#debug {
+  bottom: 1rem;
+  position: absolute;
+  right: 1rem;
+  z-index: 1;
+}

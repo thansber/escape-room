@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <head>
   <title>Receiver - Escape Room</title>
+  <link rel="stylesheet" href="receiver.css" />
 </head>
 <body>
+  <section id="debug">
+    <button id="message">Fake Message</button>
+    <button id="clear">Clear Message</button>
+  </section>
   <div id="output"></div>
 
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <script src="Rx.js"></script>
   <script type="module">
     import { FirebaseConfig } from './firebase-config.js';
     import { Store } from './store.js';
+    import { Display } from './display.js';
 
-    new FirebaseConfig();
-    const store = new Store(firebase);
+    // new FirebaseConfig();
+    // const store = new Store(firebase);
+    const display = new Display(document.getElementById('output'));
 
-    store.messager().on('child_added', data => {
-      debugger;
-    });
+    // store.messager()
+    //   .on('child_added', data => display.showMessage(data.val().message));
+
+
+    document.getElementById('message')
+      .addEventListener('click', e => display.showMessage('Hello, Renee.  I am watching you.  Are you creeped out yet?'));
+    document.getElementById('clear')
+      .addEventListener('click', e => display.hideMessage());
   </script>
 </body>
