@@ -26,7 +26,6 @@
     store.messager()
        .on('child_added', data => display.showMessage(data.val().message));
 
-
     document.getElementById('message')
       .addEventListener('click', e => display.showMessage('Hello, Renee.  I am watching you.  Are you creeped out yet?'));
     document.getElementById('clear')

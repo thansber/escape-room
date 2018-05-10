@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+  <title>Word Search - Escape Room</title>
+  <link rel="stylesheet" href="word-search.css" />
+</head>
+<body>
+  <table id="puzzle">
+    <tbody></tbody>
+  </table>
+
+  <section class="actions">
+    <button id="clear" class="bg-blue">Clear</button>
+    <button id="populate" class="bg-blue">Populate</button>
+  </section>
+
+  <script type="module">
+    import { WordSearch } from './word-search.js';
+    const puzzle = document.getElementById('puzzle');
+    const wordSearch = new WordSearch(puzzle);
+
+    document.getElementById('clear')
+      .addEventListener('click', e => wordSearch.clear());
+
+    document.getElementById('populate')
+      .addEventListener('click', e => wordSearch.populate());
+
+    puzzle.addEventListener('keyup', e => wordSearch.nextInput(e));
+
+    Array.from(document.querySelectorAll('input'))
+      .forEach(input => input.addEventListener('focus', e => e.target.select()));
+
+    const states = wordSearch.states().map(s => s.replace(' ', ''));
+    states.sort((a, b) => a.length - b.length);
+    console.log(states.map(s => `${s} (${s.length})`));
+
+  </script>
+</body>
