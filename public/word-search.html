@@ -8,30 +8,87 @@
     <tbody></tbody>
   </table>
 
-  <section class="actions">
+  <section id="actions">
     <button id="clear" class="bg-blue">Clear</button>
     <button id="populate" class="bg-blue">Populate</button>
+
+    <div class="option">
+      <input type="radio" id="saving" name="state" />
+      <label for="saving">Saving</label>
+    </div>
+    <div class="option">
+      <input type="radio" id="loading" name="state" />
+      <label for="loading">Loading</label>
+    </div>
+
+    <div class="word">
+      <button id="alice-a" class="bg-blue">A</button>
+      <button id="alice-l" class="bg-blue">L</button>
+      <button id="alice-i" class="bg-blue">I</button>
+      <button id="alice-c" class="bg-blue">C</button>
+      <button id="alice-e" class="bg-blue">E</button>
+    </div>
+
+    <div class="word">
+      <button id="wonder-w" class="bg-blue">W</button>
+      <button id="wonder-o" class="bg-blue">O</button>
+      <button id="wonder-n" class="bg-blue">N</button>
+      <button id="wonder-d" class="bg-blue">D</button>
+      <button id="wonder-e" class="bg-blue">E</button>
+      <button id="wonder-r" class="bg-blue">R</button>
+    </div>
+
+    <div class="word">
+      <button id="land-l" class="bg-blue">L</button>
+      <button id="land-a" class="bg-blue">A</button>
+      <button id="land-n" class="bg-blue">N</button>
+      <button id="land-d" class="bg-blue">D</button>
+    </div>
+
   </section>
 
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
   <script type="module">
+    import { FirebaseConfig } from './firebase-config.js';
+    import { Store } from './store.js';
     import { WordSearch } from './word-search.js';
+
+    new FirebaseConfig();
+    const store = new Store(firebase);
     const puzzle = document.getElementById('puzzle');
     const wordSearch = new WordSearch(puzzle);
+    let isSaving = false;
 
-    document.getElementById('clear')
-      .addEventListener('click', e => wordSearch.clear());
-
-    document.getElementById('populate')
-      .addEventListener('click', e => wordSearch.populate());
+    document.getElementById('actions')
+      .addEventListener('click', e => {
+        switch (e.target.id) {
+          case 'clear':
+            wordSearch.clear();
+            break;
+          case 'populate':
+            wordSearch.populate();
+            break;
+          case 'saving':
+            isSaving = true;
+            break;
+          case 'loading':
+            isSaving = false;
+            break;
+          default:
+            isSaving
+              ? store.saveWordSearch(e.target.id, wordSearch.inputsToConfig())
+              : store.loadWordSearch(e.target.id).then(config => wordSearch.configToInputs(config));
+        }
+      });
 
     puzzle.addEventListener('keyup', e => wordSearch.nextInput(e));
 
     Array.from(document.querySelectorAll('input'))
       .forEach(input => input.addEventListener('focus', e => e.target.select()));
 
-    const states = wordSearch.states().map(s => s.replace(' ', ''));
-    states.sort((a, b) => a.length - b.length);
-    console.log(states.map(s => `${s} (${s.length})`));
-
+    wordSearch.statesLeft();
   </script>
 </body>

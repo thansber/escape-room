@@ -27,8 +27,20 @@ export class WordSearch {
     this.inputs().forEach(input => input.value = '');
   }
 
+  configToInputs(config) {
+    if (!config) {
+      return;
+    }
+    const inputs = this.inputs();
+    config.split('').forEach((letter, i) => inputs[i].value = letter !== ' ' ? letter : '');
+  }
+
   inputs() {
-    return Array.from(document.querySelectorAll('input'));
+    return Array.from(document.querySelectorAll('input')).filter(input => input.type === 'text');
+  }
+
+  inputsToConfig() {
+    return this.inputs().map(input => input.value ? input.value : ' ').join('');
   }
 
   looper(num) {
@@ -66,7 +78,6 @@ export class WordSearch {
       'Alaska',
       'Arizona',
       'Arkansas',
-      'California',
       'Colorado',
       'Connecticut',
       'Delaware',
@@ -78,7 +89,6 @@ export class WordSearch {
       'Indiana',
       'Iowa',
       'Kansas',
-      'Kentucky',
       'Louisiana',
       'Maine',
       'Maryland',
@@ -89,15 +99,11 @@ export class WordSearch {
       'Missouri',
       'Montana',
       'Nebraska',
-      'Nevada',
       'New Hampshire',
       'New Jersey',
-      'New Mexico',
-      'New York',
       'North Carolina',
       'North Dakota',
       'Ohio',
-      'Oklahoma',
       'Oregon',
       'Pennsylvania',
       'Rhode Island',
@@ -107,11 +113,34 @@ export class WordSearch {
       'Texas',
       'Utah',
       'Vermont',
-      'Virginia',
       'Washington',
       'West Virginia',
-      'Wisconsin',
       'Wyoming'
+    ];
+  }
+
+  statesLeft() {
+    const used = this.usedStates();
+    const leftover = this.states()
+      .filter(state => used.indexOf(state) < 0)
+      .map(s => s.replace(' ', ''));
+    leftover.sort((a, b) => a.length - b.length);
+    console.log(leftover.map(s => `${s} (${s.length})`));
+  }
+
+  usedStates() {
+    return [
+      'California', // wonder D
+      'Kentucky', // wonder W
+      'Massachusetts', // wonder N
+      'Nevada', // wonder W
+      'New Mexico', // wonder D
+      'New York', // wonder W
+      'Oklahoma', // wonder D
+      'Pennsylvania', // wonder N
+      'Tennessee', // wonder N
+      'Virginia', // wonder W
+      'Wisconsin' // wonder D
     ];
   }
 

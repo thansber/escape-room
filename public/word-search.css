@@ -7,7 +7,6 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  position: fixed;
 }
 
 table {
@@ -36,8 +35,12 @@ input {
   width: 3rem;
 }
 
-.actions {
+#actions {
   margin-top: 1.5rem;
+}
+
+#actions .word {
+  margin-top: 1rem;
 }
 
 button {
@@ -55,4 +58,28 @@ button:active {
 
 .bg-blue {
   background-color: #0D47A1;
+}
+
+
+.option {
+  align-items: center;
+  display: inline-flex;
+  height: 1rem;
+}
+
+label {
+  cursor: pointer;
+  font-size: 150%;
+}
+
+@media print {
+  body {
+    margin-top: 5rem;
+  }
+  input {
+    color: black;
+  }
+  #actions {
+    display: none;
+  }
 }
