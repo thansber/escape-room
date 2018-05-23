@@ -82,21 +82,17 @@ export class WordSearch {
       'Georgia',
       'Hawaii',
       'Illinois',
-      'Indiana',
       'Iowa',
       'Kansas',
       'Louisiana',
       'Maine',
       'Maryland',
       'Massachusetts',
-      'Michigan',
       'Minnesota',
-      'Mississippi',
       'Missouri',
       'Montana',
       'New Hampshire',
       'New Jersey',
-      'North Dakota',
       'Ohio',
       'Pennsylvania',
       'Rhode Island',
@@ -126,13 +122,17 @@ export class WordSearch {
       'Arizona', // wonder R
       'California', // wonder D
       'Idaho', // wonder E
+      'Indiana', // wonder O
       'Kentucky', // wonder W
       'Massachusetts', // wonder N
+      'Michigan', // wonder O
+      'Mississippi', // wonder O
       'Nebraska', // wonder E
       'Nevada', // wonder W
       'New Mexico', // wonder D
       'New York', // wonder W
       'North Carolina', // wonder R
+      'North Dakota', // wonder O
       'Oklahoma', // wonder D
       'Oregon', // wonder R
       'Pennsylvania', // wonder N
