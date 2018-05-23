@@ -77,10 +77,17 @@
           case 'loading':
             isSaving = false;
             break;
+          case 'actions':
+            break;
           default:
-            isSaving
-              ? store.saveWordSearch(e.target.id, wordSearch.inputsToConfig())
-              : store.loadWordSearch(e.target.id).then(config => wordSearch.configToInputs(config));
+            if (isSaving) {
+              store.saveWordSearch(e.target.id, wordSearch.inputsToConfig())
+              Array.from(e.currentTarget.getElementsByTagName('input'))
+                .filter(input => /state/.test(input.name))
+                .forEach(input => input.checked = false)
+            } else {
+              store.loadWordSearch(e.target.id).then(config => wordSearch.configToInputs(config))
+            }
         }
       });
 

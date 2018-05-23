@@ -10,7 +10,7 @@ export class Store {
 
   loadWordSearch(key) {
     if (!key) {
-      return;
+      return Promise.resolve();
     }
     return this.db.ref(`wordSearch/${key}`).once('value')
       .then(snapshot => snapshot && snapshot.val());

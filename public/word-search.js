@@ -74,9 +74,6 @@ export class WordSearch {
 
   states() {
     return [
-      'Alabama',
-      'Alaska',
-      'Arizona',
       'Arkansas',
       'Colorado',
       'Connecticut',
@@ -84,7 +81,6 @@ export class WordSearch {
       'Florida',
       'Georgia',
       'Hawaii',
-      'Idaho',
       'Illinois',
       'Indiana',
       'Iowa',
@@ -98,13 +94,10 @@ export class WordSearch {
       'Mississippi',
       'Missouri',
       'Montana',
-      'Nebraska',
       'New Hampshire',
       'New Jersey',
-      'North Carolina',
       'North Dakota',
       'Ohio',
-      'Oregon',
       'Pennsylvania',
       'Rhode Island',
       'South Carolina',
@@ -113,9 +106,7 @@ export class WordSearch {
       'Texas',
       'Utah',
       'Vermont',
-      'Washington',
-      'West Virginia',
-      'Wyoming'
+      'West Virginia'
     ];
   }
 
@@ -130,17 +121,26 @@ export class WordSearch {
 
   usedStates() {
     return [
+      'Alabama', // wonder R
+      'Alaska', // wonder R
+      'Arizona', // wonder R
       'California', // wonder D
+      'Idaho', // wonder E
       'Kentucky', // wonder W
       'Massachusetts', // wonder N
+      'Nebraska', // wonder E
       'Nevada', // wonder W
       'New Mexico', // wonder D
       'New York', // wonder W
+      'North Carolina', // wonder R
       'Oklahoma', // wonder D
+      'Oregon', // wonder R
       'Pennsylvania', // wonder N
       'Tennessee', // wonder N
       'Virginia', // wonder W
-      'Wisconsin' // wonder D
+      'Washington', // wonder E
+      'Wisconsin', // wonder D
+      'Wyoming' // wonder E
     ];
   }
 
