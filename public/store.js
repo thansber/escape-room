@@ -21,6 +21,10 @@ export class Store {
   }
 
   saveWordSearch(key, wordSearchConfig) {
+    if (!key) {
+      console.log('no key provided when saving word search');
+      debugger;
+    }
     this.db.ref(`wordSearch/${key}`).set(wordSearchConfig);
   }
 

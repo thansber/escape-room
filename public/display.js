@@ -15,10 +15,16 @@ export class Display {
   }
 
   letterElement(ch) {
-    const elem = document.createElement('p');
-    elem.innerHTML = ch;
-    if (ch === ' ') {
-      elem.classList.add('space');
+    let elem;
+
+    if (ch === '\n') {
+      elem = document.createElement('br');
+    } else {
+      elem = document.createElement('span');
+      elem.innerHTML = ch;
+      if (ch === ' ') {
+        elem.classList.add('space');
+      }
     }
     this.output.appendChild(elem);
     return elem;

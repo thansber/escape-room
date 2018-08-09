@@ -10,7 +10,7 @@ body {
   position: fixed;
 }
 
-#output {
+#container {
   align-items: center;
   display: flex;
   font-size: 250%;
@@ -20,16 +20,21 @@ body {
   width: 100%;
 }
 
+#output {
+  text-align: center;
+}
+
 #output.hiding {
   opacity: 0;
 }
 
-#output p {
+#output span {
+  display: inline-block;
   opacity: 0;
   transition: opacity 1s;
 }
 
-#output p.showing {
+#output span.showing {
   opacity: 1;
 }
 
