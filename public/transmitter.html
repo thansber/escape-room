@@ -10,6 +10,9 @@
 
       <div class="actions">
         <button id="send" class="bg-blue">Send</button>
+        <button id="startTimer" class="bg-green">Start Timer</button>
+        <button id="pauseTimer" class="bg-green">Pause/Resume Timer</button>
+        <button id="showTimer" class="bg-green">Show Timer</button>
         <button id="clear" class="bg-red">Clear all data</button>
       </div>
     </section>
@@ -25,12 +28,19 @@
 
     new FirebaseConfig();
     const store = new Store(firebase);
-
     const messageInput = document.getElementById('message');
+
+    store.clearAll();
 
     document.getElementById('send')
       .addEventListener('click', e => store.send(messageInput.value))
+    document.getElementById('startTimer')
+      .addEventListener('click', e => store.command('start-timer'))
+    document.getElementById('pauseTimer')
+      .addEventListener('click', e => store.command('toggle-timer'))
+    document.getElementById('showTimer')
+      .addEventListener('click', e => store.command('show-timer'))
     document.getElementById('clear')
-      .addEventListener('click', e => store.clearAll());
+      .addEventListener('click', e => store.clearAll())
   </script>
 </body>

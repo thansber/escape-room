@@ -22,6 +22,7 @@ body {
 
 #output {
   text-align: center;
+  transition: opacity 1s;
 }
 
 #output.hiding {
@@ -40,6 +41,22 @@ body {
 
 #output .space {
   width: 1rem;
+}
+
+#timerContainer {
+  display: flex;
+  font-size: 2.5rem;
+  justify-content: flex-end;
+  margin: 1rem;
+}
+
+#timer {
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+#timer.shown {
+  opacity: 1;
 }
 
 #debug {

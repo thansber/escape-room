@@ -3,15 +3,24 @@ export class Display {
     this.output = output;
   }
 
+  buildMessage(msg) {
+    return msg.split('').map(ch => this.letterElement(ch));
+  }
+
   clearOutput() {
+    console.log('clearing');
     this.output.innerHTML = '';
   }
 
   hideMessage() {
-    Rx.Observable.of(this.output.classList.add('hiding'))
-      .delay(3000)
+    return Rx.Observable.of(this.output.classList.add('hiding'))
+      .delay(2000)
       .do(() => this.clearOutput())
-      .subscribe();
+      .do(() => this.output.classList.remove('hiding'));
+  }
+
+  hideMessageNow() {
+    this.hideMessage().subscribe();
   }
 
   letterElement(ch) {
@@ -26,18 +35,25 @@ export class Display {
         elem.classList.add('space');
       }
     }
+    console.log('adding message elem');
     this.output.appendChild(elem);
     return elem;
   }
 
   showMessage(msg) {
-    const elems = msg.split('').map(ch => this.letterElement(ch));
+    this.hideMessage()
+      .map(() => this.buildMessage(msg))
+      .switchMap(elems =>
+        Rx.Observable.interval(100)
+        .map(i => elems[i])
+        .do(elem => elem.classList.add('showing'))
+        .take(msg.length)
+      )
+      .subscribe()
+  }
 
-    Rx.Observable.interval(100)
-      .map(i => elems[i])
-      .do(elem => elem.classList.add('showing'))
-      .take(msg.length)
-      .subscribe();
+  updateTimer(time, timer) {
+    timer.innerHTML = `${time.format()}`
   }
 }
 

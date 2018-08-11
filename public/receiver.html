@@ -4,31 +4,48 @@
   <link rel="stylesheet" href="receiver.css" />
 </head>
 <body>
+
   <section id="debug">
     <button id="message">Fake Message</button>
     <button id="clear">Clear Message</button>
   </section>
+
+  <section id="timerContainer"><div id="timer"></section>
+
   <section id="container"><div id="output"></div></section>
 
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-  <script src="Rx.js"></script>
+  <script src="lib/Rx.js"></script>
+  <script src="lib/moment.min.js"></script>
+  <script src="lib/moment-duration-format.js"></script>
   <script type="module">
     import { FirebaseConfig } from './firebase-config.js';
     import { Store } from './store.js';
     import { Display } from './display.js';
+    import { Timer } from './timer.js';
 
     new FirebaseConfig();
     const store = new Store(firebase);
     const display = new Display(document.getElementById('output'));
+    const timer = new Timer(document.getElementById('timer'));
 
-    store.messager()
-       .on('child_added', data => display.showMessage(data.val().message));
+    timer.update();
+    store.messager().on('child_added', data => display.showMessage(data.val().message))
+    store.commander().on('child_added', cmd => {
+      switch(cmd.val().command) {
+        case 'show-timer': return timer.show();
+        case 'start-timer': return timer.start();
+        case 'toggle-timer': return timer.pauseToggle();
+      }
+    })
 
+/*
     document.getElementById('message')
       .addEventListener('click', e => display.showMessage('Hello, Renee.  I am watching you.  Are you creeped out yet?'));
     document.getElementById('clear')
       .addEventListener('click', e => display.hideMessage());
+*/
   </script>
 </body>

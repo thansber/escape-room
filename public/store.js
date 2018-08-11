@@ -1,11 +1,21 @@
 export class Store {
   constructor(firebase) {
     this.db = firebase.database();
+    this.commanderRef = this.db.ref('commands');
     this.messageRef = this.db.ref('messages');
   }
 
   clearAll() {
+    this.commanderRef.remove();
     this.messageRef.remove();
+  }
+
+  command(command) {
+    this.commander().push().set({ command })
+  }
+
+  commander() {
+    return this.commanderRef;
   }
 
   loadWordSearch(key) {
@@ -29,6 +39,6 @@ export class Store {
   }
 
   send(message) {
-    this.messageRef.push().set({ message });
+    this.messager().push().set({ message });
   }
 }

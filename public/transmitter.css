@@ -44,10 +44,18 @@ button {
   background-color: #0D47A1;
 }
 
+.bg-green {
+  background-color: #1b5e20;
+}
+
 .red {
   color: #B71C1C;
 }
 
 .blue {
   color: #0D47A1;
+}
+
+.green {
+  color: #1b5e20;
 }
