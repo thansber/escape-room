@@ -8,7 +8,6 @@ export class Display {
   }
 
   clearOutput() {
-    console.log('clearing');
     this.output.innerHTML = '';
   }
 
@@ -35,7 +34,6 @@ export class Display {
         elem.classList.add('space');
       }
     }
-    console.log('adding message elem');
     this.output.appendChild(elem);
     return elem;
   }

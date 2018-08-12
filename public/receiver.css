@@ -13,7 +13,7 @@ body {
 #container {
   align-items: center;
   display: flex;
-  font-size: 250%;
+  font-size: 400%;
   height: 100%;
   justify-content: center;
   transition: opacity 3s;
@@ -45,9 +45,11 @@ body {
 
 #timerContainer {
   display: flex;
-  font-size: 2.5rem;
+  font-size: 300%;
   justify-content: flex-end;
-  margin: 1rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 
 #timer {
@@ -57,12 +59,4 @@ body {
 
 #timer.shown {
   opacity: 1;
-}
-
-#debug {
-  bottom: 1rem;
-  display: none;
-  position: absolute;
-  right: 1rem;
-  z-index: 1;
 }
